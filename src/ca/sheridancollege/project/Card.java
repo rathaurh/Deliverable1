@@ -1,26 +1,71 @@
-/**
- * SYST 17796 Project Winter 2019 Base code.
- * Students can modify and extend to implement their game.
- * Add your name as a modifier and the date!
- */
-package ca.sheridancollege.project;
+
+package blackjack;
 
 /**
- * A class to be used as the base Card class for the project. Must be general
- * enough to be instantiated for any Card game. Students wishing to add to the code 
- * should remember to add themselves as a modifier.
- * @author dancye, 2018
+ *
+ * @author harjeet kaur Rathaur
  */
-public abstract class Card 
+class Card {
+/*
+ * generates a playing card
+    Model class of Black jack project
+ */
+private int CardRank;//depicts card rank
+private int CardSuit;//depicts card suit
+private int value;//depicts card value
+private static String[] ranking = {"Joker","Ace","Two","Three","Four","Five","Six","Seven","Eight","Nine","Ten","Jack","Queen","King"};
+private static String[] suits = {"Clubs","Diamonds","Hearts","Spades"};
+
+Card(int CardSuit, int values)
 {
-    //default modifier for child classes
-    
-    /**
-     * Students should implement this method for their specific children classes 
-     * @return a String representation of a card. Could be an UNO card, a regular playing card etc.
-     */
-    
-    @Override
-    public abstract String toString();
-    
+    this.CardRank=values;
+    this.CardSuit=CardSuit;
+}
+/*
+ * return the cards in the form of the string
+ */
+public String toString()
+{
+    return ranking[CardRank]+" in the  "+suits[CardSuit];
+}
+/*
+ * get card ranking
+ */
+public int getCardRank()
+{
+    return CardRank;
+}
+/*
+ * get the card suit
+ */
+public int getCardSuit()
+{
+    return CardSuit;
+}
+/*
+ * get the value of the card 
+ */
+public int getValue()
+{
+    if(CardRank>10)
+    {
+        value=10;
+    }
+    else if(CardRank==1)
+    {
+        value=11;
+    }
+    else
+    {
+        value=CardRank;
+    }
+    return value;
+}
+/*
+ * Setting value of the cards
+ */
+public void setValue(int set)
+{
+    value = set;
+}
 }
