@@ -1,57 +1,52 @@
-/**
- * SYST 17796 Project Winter 2019 Base code.
- * Students can modify and extend to implement their game.
- * Add your name as a modifier and the date!
- */
-package ca.sheridancollege.project;
 
+package blackjack;
+
+/**
+ *
+ * @author harjeet
+ */
 import java.util.ArrayList;
-import java.util.Collections;
-
-/**
- * A concrete class that represents any grouping of cards for a Game.
- * HINT, you might want to subclass this more than once.
- * The group of cards has a maximum size attribute which is flexible for reuse.
- * @author dancye
+import java.util.Random;
+/*
+ * it has the Fifty Two card mixed card deckes
  */
-public class GroupOfCards 
+class GroupOfCards {
+private ArrayList<Card> deckes;//contains the fifty two cards deck
+GroupOfCards()
 {
-   
-    //The group of cards, stored in an ArrayList
-    private ArrayList <Card> cards;
-    private int size;//the size of the grouping
-    
-    public GroupOfCards(int givenSize)
+    deckes = new ArrayList<Card>();
+    for(int j=0; j<4; j++)
     {
-        size = givenSize;
+        for(int k=1; k<=13; k++)
+        {
+            deckes.add(new Card(j,k));
+        }
     }
-    
-    /**
-     * A method that will get the group of cards as an ArrayList
-     * @return the group of cards.
-     */
-    public ArrayList<Card> showCards()
-    {
-        return cards;
-    }
-    
-    public void shuffle()
-    {
-        Collections.shuffle(cards);
-    }
+}
 
-    /**
-     * @return the size of the group of cards
-     */
-    public int getSize() {
-        return size;
-    }
+/*
+ * taking a card from the fifty two cards
+ */
+public Card drawingACard()
+{
+    return deckes.remove(0);
+}
 
-    /**
-     * @param givenSize the max size for the group of cards
-     */
-    public void setSize(int givenSize) {
-        size = givenSize;
-    }
+/*
+ * Mixes the cards all the Fifty two to play the game
+ */
+public void shuffling()
+{
+    Card t;
+    Random ran = new Random();
     
-}//end class
+    for(int i=0; i<200; i++)
+    {
+        int i1 = ran.nextInt(deckes.size()-1);
+        int i2 = ran.nextInt(deckes.size()-1);
+        t = deckes.get(i2);
+        deckes.set(i2, deckes.get(i1));
+        deckes.set(i1, t);
+    }
+}
+}
